@@ -1,0 +1,78 @@
+# deps
+node_modules/
+**/node_modules/
+
+# build / Next / Nest / Turbo
+dist/
+**/dist/
+.next/
+**/.next/
+out/
+build/
+.turbo/
+**/.turbo/
+*.tsbuildinfo
+.next/cache/
+**/.next/cache/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+/tmp/
+
+# env
+.env
+.env.*
+!.env.example
+env/
+ENV/
+
+# os
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# DofusDB dados brutos (gerados via extractor - grandes, não versionar)
+/*.json
+!package.json
+!package-lock.json
+!tsconfig.base.json
+!turbo.json
+# (mantém configs, ignora achievements.json, items.json, etc. na raiz)
+
+# dados derivados (gerados por build-data)
+apps/api/data/*.json
+apps/api/data/*.min.json
+
+# misc
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+.opencode/
+.vscode/
+.idea/
+*.db
+*.sqlite
+*.sqlite3

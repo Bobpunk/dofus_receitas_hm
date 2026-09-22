@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dofus Recipe - Minhas Receitas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Minhas Receitas de Dofus</h1>
+        <p>Calcule o lucro das suas receitas salvas ou crie novas.</p>
+    </header>
+
+    <main>
+        <section id="mainView" class="card">
+            <h2>Buscar Receita Salva</h2>
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="Digite o nome do item..." autocomplete="off">
+                <div class="suggestions-container"></div>
+            </div>
+            <button id="searchButton">Buscar</button>
+            <p class="separator">ou</p>
+            <button id="showCreateViewButton" class="secondary">Criar Nova Receita</button>
+            <button id="showListViewButton" class="secondary">Ver Minhas Receitas Salvas</button>
+            <button id="showRuneCalculatorButton" class="secondary">Calculadora de Runas</button>
+            <button id="showTopRecipesButton" class="secondary">Ver Top 20 Lucrativos</button>
+            <button id="showWorkbenchButton" class="secondary">Workbench</button>
+        </section>
+
+        <section id="workbenchView" class="card hidden">
+            <div class="workbench-header">
+                <h2>Workbench</h2>
+                <button id="clearWorkbenchButton">Limpar Tudo</button>
+            </div>
+            <p>Sua fila de produção e lista de materiais consolidados.</p>
+            <hr>
+            <div class="workbench-panels-vertical">
+                <div class="panel">
+                    <h3>Materiais Necessários</h3>
+                    <div id="workbenchIngredients"></div>
+                </div>
+                <div class="panel">
+                    <h3>Fila de Produção</h3>
+                    <div id="workbenchFinalItems"></div>
+                </div>
+            </div>
+            <div id="workbenchSummary" class="card"></div>
+            <button class="back-button" id="backToMainFromWorkbench">Voltar</button>
+        </section>
+        
+        <section id="topRecipesView" class="card hidden">
+            <h2>Top 20 Receitas Lucrativas</h2>
+            <p>Baseado nos preços que você salvou. Clique no item para detalhes ou no '+' para adicionar à Workbench.</p>
+            <button id="recalculateTopRecipes" class="secondary" style="margin-top: 15px;">Recalcular</button>
+            <hr>
+            <div id="topRecipesContainer"></div>
+            <button class="back-button" id="backToMainFromTopRecipes">Voltar</button>
+        </section>
+
+        <section id="runeCalculatorView" class="card hidden">
+            <h2>Calculadora de Lucro - Runa Lvl 3</h2>
+            <p>Compare o custo e o lucro final para um lote de 100 runas.</p>
+            <hr>
+            <div class="rune-calculator-layout">
+                <div class="rune-inputs">
+                    <h3>Preços de Mercado</h3>
+                    <div><label for="runaLvl1Price">Preço de Compra (Runa Lvl 1)</label><input type="number" id="runaLvl1Price" value="15"></div>
+                    <div><label for="runaLvl2Price">Preço de Compra (Runa Lvl 2)</label><input type="number" id="runaLvl2Price" value="141"></div>
+                    <div><label for="runaLvl3Price">Preço de Venda (Runa Lvl 3)</label><input type="number" id="runaLvl3Price" value="339"></div>
+                </div>
+                <div class="rune-results">
+                    <h3>Custo por Unidade (Runa Lvl 3)</h3>
+                    <div class="rune-result-box"><h4>Via Runa Lvl 1 (Fabricando tudo)</h4><p class="result-value" id="costViaLvl1">0 Kamas</p></div>
+                    <div class="rune-result-box"><h4>Via Runa Lvl 2 (Comprando Lvl 2)</h4><p class="result-value" id="costViaLvl2">0 Kamas</p></div>
+                    <div class="rune-conclusion-box"><h3>Lucro Total (Lote de 100 Runas Lvl 3)</h3><p id="batchProfit" class="result-value">0 Kamas</p><small id="batchDetails" class="text-gray-400"></small></div>
+                </div>
+            </div>
+            <button class="back-button" id="backToMainFromRuneCalc">Voltar</button>
+        </section>
+
+        <section id="listView" class="card hidden">
+            <h2>Minhas Receitas Salvas</h2>
+            <div id="categoryContainer"></div>
+            <hr>
+            <div id="savedRecipesGrid"></div>
+            <button class="back-button" id="backToMainFromList">Voltar</button>
+        </section>
+
+        <section id="createView" class="card hidden">
+            <div id="creationStep1">
+                <h2>Nova Receita</h2>
+                <label for="newItemName">Digite o nome do item que você quer criar:</label>
+                <div class="search-wrapper"><input type="text" id="newItemName" placeholder="Ex: Anel do Satisfeito" autocomplete="off"><div class="suggestions-container"></div></div>
+                <button id="fetchAndFillButton">Buscar Receita</button>
+            </div>
+            <div id="creationStep2" class="hidden">
+                <h2>Verifique a Receita</h2>
+                <p class="recipe-source-notice"></p>
+                <div id="ingredientFieldsContainer"></div>
+                <button id="saveRecipeButton">Salvar Receita</button>
+            </div>
+            <button class="back-button" id="backToMainViewButton">Voltar</button>
+        </section>
+
+        <section id="calculatorView" class="card hidden">
+            <div id="recipeResult"></div>
+            <hr>
+            <h2>Calcular Lucro</h2>
+            <div id="calculatorInputs"></div>
+            <button id="calculateButton">Calcular</button>
+            <button id="addToWorkbenchButton" class="secondary">Adicionar à Workbench</button>
+            <div id="summarySection"></div>
+            <button class="back-button" id="backToSearchViewButton">Voltar</button>
+        </section>
+    </main>
+
+    <div id="toast-notification" class="toast hidden"></div>
+    <script src="script.js"></script>
+</body>
+</html>

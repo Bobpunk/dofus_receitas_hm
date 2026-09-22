@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dofusdb-extractor"
+version = "1.0.0"
+description = "Extrator de dados da API pública do DofusDB (https://api.dofusdb.fr)"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+dofusdb-extractor = "dofusdb_extractor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

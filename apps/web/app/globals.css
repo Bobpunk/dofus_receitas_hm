@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 14 18 26;
+  --bg2: 10 13 19;
+  --panel: 24 30 42;
+  --panel2: 30 38 52;
+  --ink: 237 232 218;
+  --muted: 150 158 173;
+  --line: 52 60 76;
+  --gold: 214 175 96;
+  --gold2: 240 211 138;
+  --accent: 86 170 158;
+  --ok: 122 184 120;
+  --danger: 214 108 96;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  border-color: rgb(var(--line));
+}
+
+/* remove spinners (setas de + / -) dos inputs numéricos */
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html,
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(1100px 600px at 12% -8%, rgb(var(--accent) / 0.10), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgb(var(--gold) / 0.10), transparent 55%),
+    linear-gradient(180deg, rgb(var(--bg2)), rgb(var(--bg)));
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgb(var(--gold) / 0.3);
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+
+  .panel {
+    background:
+      linear-gradient(180deg, rgb(var(--panel2) / 0.7), rgb(var(--panel) / 0.7));
+    border: 1px solid rgb(var(--line));
+    border-radius: 1.1rem;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 18px 40px -24px rgb(0 0 0 / 0.7);
+    backdrop-filter: blur(6px);
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-panel2/60 px-3 py-1 text-sm;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition;
+  }
+  .btn-gold {
+    background: linear-gradient(180deg, rgb(var(--gold2)), rgb(var(--gold)));
+    color: #2a2010;
+    box-shadow: 0 10px 26px -14px rgb(var(--gold) / 0.8);
+  }
+  .btn-gold:hover {
+    filter: brightness(1.05);
+  }
+  .btn-ghost {
+    @apply border border-line bg-panel2/50 text-ink hover:bg-panel2;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-line bg-bg2/70 px-3 py-2 text-ink outline-none placeholder:text-muted focus:border-gold/60;
+  }
+
+  .label {
+    @apply text-xs uppercase tracking-widest text-muted;
+  }
+
+  .tag-gold {
+    @apply rounded-md bg-gold/15 px-2 py-0.5 text-xs font-medium text-gold2;
+  }
+  .tag-accent {
+    @apply rounded-md bg-accent/15 px-2 py-0.5 text-xs font-medium text-accent;
+  }
+}
+
+.kamas::after {
+  content: ' K';
+  color: rgb(var(--gold));
+  font-variant-numeric: tabular-nums;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border-radius: 999px;
+}
